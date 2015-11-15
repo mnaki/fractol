@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 18:56:22 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:09:53 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # include <mlx.h>
 # include <math.h>
+# include <pthread.h>
 # include "libft.h"
 # define WIDTH			1280
 # define HEIGHT			720
@@ -36,6 +37,7 @@ struct					s_env
 	double				move_x;
 	double				move_y;
 	int					max_iter;
+	pthread_mutex_t		m;
 };
 
 struct					s_vec2

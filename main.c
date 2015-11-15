@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:01:45 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:12:21 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ t_env	*global_singleton(void)
 
 int		main(void)
 {
+	static	pthread_t t;
 	global_singleton();
+	pthread_create(&t, NULL, (void*)draw, NULL);
 	mlx_loop(global_singleton()->core);
+
+
+
 	return (0);
 }

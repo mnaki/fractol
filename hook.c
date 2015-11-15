@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:01:39 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:12:59 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int		loop_hook(t_env *e)
 {
-	// static pthread_t t;
-	// static pthread_attr_t
-	fill_img(0x0, e);
-	draw();
-	// pthread_create(&t, NULL, draw, NULL);
-	e->max_iter += 1;
+	pthread_mutex_lock(&e->m);
+	fill_img(0x000000, e);
 	mlx_put_image_to_window(e->core, e->win, e->img, 0, 0);
+	pthread_mutex_unlock(&e->m);
+	usleep(100);
+	e->max_iter += 1;
 	return (1);
 }
 
@@ -39,10 +38,6 @@ int		expose_hook(t_env *e)
 	return (1);
 }
 
-// #include <pthread.h>
-
-// int pthread_create(pthread_t * thread, pthread_attr_t * attr, void *(*start_routine) (void *), void *arg);
-
 void	draw(void)
 {
 	int		x;
@@ -55,28 +50,33 @@ void	draw(void)
 	t_env	*e;
 
 	e = global_singleton();
-	x = 0;
-	while (x < e->width)
+	while (1)
 	{
-		y = 0;
-		while (y < HEIGHT)
+		x = 0;
+		while (x < e->width)
 		{
-			new_re = 1.5 * (x - e->width / 2) / (0.5 * e->zoom * e->width) + e->move_x;
-			new_im = (y - HEIGHT / 2) / (0.5 * e->zoom * HEIGHT) + e->move_y;
-			i = 0;
-			while (i < e->max_iter)
+			y = 0;
+			while (y < HEIGHT)
 			{
-				old_re = new_re;
-				old_im = new_im;
-				new_re = old_re * old_re - old_im * old_im + e->c_re;
-				new_im = 2 * old_re * old_im + e->c_im;
-				if ((new_re * new_re + new_im * new_im) > 4)
-					break ;
-				i++;
+				new_re = 1.5 * (x - e->width / 2) / (0.5 * e->zoom * e->width) + e->move_x;
+				new_im = (y - HEIGHT / 2) / (0.5 * e->zoom * HEIGHT) + e->move_y;
+				i = 0;
+				while (i < e->max_iter)
+				{
+					old_re = new_re;
+					old_im = new_im;
+					new_re = old_re * old_re - old_im * old_im + e->c_re;
+					new_im = 2 * old_re * old_im + e->c_im;
+					if ((new_re * new_re + new_im * new_im) > 4)
+						break ;
+					i++;
+				}
+				// pthread_mutex_lock(&e->m);
+				put_pixel_to_img(x, y, 0x110000 * ((double)i/10), e);
+				// pthread_mutex_unlock(&e->m);
+				y++;
 			}
-			put_pixel_to_img(x, y, 0x110000 * ((double)i/10), e);
-			y++;
+			x++;
 		}
-		x++;
 	}
 }
