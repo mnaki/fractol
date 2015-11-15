@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:36:23 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 15:55:05 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 23:45:55 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel_to_img(int x, int y, unsigned int color, t_env *e)
 	int		size_line;
 	int		endian;
 
-	if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
+	if (x >= e->width || x < 0 || y >= e->height || y < 0)
 		return ;
 	data = mlx_get_data_addr(e->img, &bpp, &size_line, &endian);
 	data[(y

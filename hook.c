@@ -6,19 +6,28 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:24:11 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 00:41:10 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void ft_swap(void *a, void *b);
+void	ft_swap(void *a, void *b)
+{
+	void	*c;
+
+	c = (void**)a;
+	*(void**)a = *(void**)b;
+	*(void**)b = c;
+}
+
 int		loop_hook(t_env *e)
 {
-	fill_img(0x000000, e);
 	pthread_mutex_lock(&e->m);
-	mlx_put_image_to_window(e->core, e->win, e->img, 0, 0);
+	usleep(10000);
+	mlx_put_image_to_window(e->core, e->win, e->finish, 0, 0);
 	pthread_mutex_unlock(&e->m);
-	e->max_iter += 1;
 	return (1);
 }
 
@@ -51,14 +60,15 @@ void	draw(void)
 	e = global_singleton();
 	while (1)
 	{
+		// fill_img(0x110000 * e->max_iter % 0xff0000, e);
 		x = 0;
 		while (x < e->width)
 		{
 			y = 0;
-			while (y < HEIGHT)
+			while (y < e->height)
 			{
 				new_re = 1.5 * (x - e->width / 2) / (0.5 * e->zoom * e->width) + e->move_x;
-				new_im = (y - HEIGHT / 2) / (0.5 * e->zoom * HEIGHT) + e->move_y;
+				new_im = (y - e->height / 2) / (0.5 * e->zoom * e->height) + e->move_y;
 				i = 0;
 				while (i < e->max_iter)
 				{
@@ -70,12 +80,18 @@ void	draw(void)
 						break ;
 					i++;
 				}
-				pthread_mutex_lock(&e->m);
-				put_pixel_to_img(x, y, 0x110000 * ((double)i/10), e);
-				pthread_mutex_unlock(&e->m);
+				// pthread_mutex_lock(&e->m);
+				put_pixel_to_img(x, y, 0xff0000 * i % 0xff0000, e);
+				// pthread_mutex_unlock(&e->m);
 				y++;
 			}
 			x++;
 		}
+		e->max_iter = 10 + (e->max_iter + 2) % 100;
+		pthread_mutex_lock(&e->m);
+		void *tmp = e->img;
+		e->img = e->finish;
+		e->finish = tmp;
+		pthread_mutex_unlock(&e->m);
 	}
 }

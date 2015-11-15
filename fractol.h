@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:24:05 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 23:42:46 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <math.h>
 # include <pthread.h>
 # include "libft.h"
-# define WIDTH			1280
-# define HEIGHT			720
 # define MAX_CALLBACKS	65536
 
 typedef struct s_env	t_env;
