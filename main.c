@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 18:55:45 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:01:45 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_env	*global_singleton(void)
 		e.zoom = 1;
 		e.move_x = 0;
 		e.move_y = 0;
-		e.max_iter = 5;
+		e.max_iter = 0;
 		e.width = WIDTH;
 		e.height = HEIGHT;
 		inited = true;
