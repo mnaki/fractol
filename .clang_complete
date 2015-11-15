@@ -1,0 +1,6 @@
+-I./libft/
+-I./
+-Wall
+-Werror
+-Wextra
+-I/Volumes/Data/nfs/zfs-student-5/users/2013/nmohamed/minilibx_macos
