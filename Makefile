@@ -6,14 +6,14 @@
 #    By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/05 14:47:20 by nmohamed          #+#    #+#              #
-#    Updated: 2015/11/15 17:56:13 by nmohamed         ###   ########.fr        #
+#    Updated: 2015/11/15 18:56:03 by nmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		:=	callbacks.c draw_seg.c fill_img.c hook.c init_callbacks.c init_callbacks2.c main.c put_pixel_to_img.c vector.c
 
 CC		:=	clang
-NAME	:=	fdf
+NAME	:=	fractol
 INC		:=	-I./ -I./libft -I$(HOME)/minilibx_macos
 OBJ		:=	$(SRC:.c=.o)
 CFLAGS	:=	-Wall -Wextra -Werror -Wmissing-prototypes

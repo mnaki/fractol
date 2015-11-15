@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 18:50:17 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 18:55:05 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,30 @@ void	draw(void)
 {
 	int		x;
 	int		y;
-	double	newRe;
-	double	newIm;
-	double	oldIm;
-	double	oldRe;
+	double	new_re;
+	double	new_im;
+	double	old_im;
+	double	old_re;
 	int i;
 	t_env	*e;
 
 	e = global_singleton();
 	x = 0;
-	while (x < WIDTH)
+	while (x < e->width)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			newRe = 1.5 * (x - WIDTH / 2) / (0.5 * e->zoom * WIDTH) + e->moveX;
-			newIm = (y - HEIGHT / 2) / (0.5 * e->zoom * HEIGHT) + e->moveY;
+			new_re = 1.5 * (x - e->width / 2) / (0.5 * e->zoom * e->width) + e->move_x;
+			new_im = (y - HEIGHT / 2) / (0.5 * e->zoom * HEIGHT) + e->move_y;
 			i = 0;
 			while (i < e->max_iter)
 			{
-				oldRe = newRe;
-				oldIm = newIm;
-				newRe = oldRe * oldRe - oldIm * oldIm + e->cRe;
-				newIm = 2 * oldRe * oldIm + e->cIm;
-				if ((newRe * newRe + newIm * newIm) > 4)
+				old_re = new_re;
+				old_im = new_im;
+				new_re = old_re * old_re - old_im * old_im + e->c_re;
+				new_im = 2 * old_re * old_im + e->c_im;
+				if ((new_re * new_re + new_im * new_im) > 4)
 					break ;
 				i++;
 			}

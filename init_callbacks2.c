@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/12 18:13:20 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 18:49:43 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 18:53:55 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 int		ft_move_up(void)
 {
-	ft_printf("%s\n", "iteration++");
-	global_singleton()->max_iter += 1;
+	ft_printf("%s\n", "up");
 	return (1);
 }
 
 int		ft_move_down(void)
 {
-	ft_printf("%s\n", "iteration--");
-	global_singleton()->max_iter -= 1;
+	ft_printf("%s\n", "down");
 	return (1);
 }
 
