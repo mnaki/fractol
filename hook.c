@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:12:59 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:24:11 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int		loop_hook(t_env *e)
 {
-	pthread_mutex_lock(&e->m);
 	fill_img(0x000000, e);
+	pthread_mutex_lock(&e->m);
 	mlx_put_image_to_window(e->core, e->win, e->img, 0, 0);
 	pthread_mutex_unlock(&e->m);
-	usleep(100);
 	e->max_iter += 1;
 	return (1);
 }
@@ -71,9 +70,9 @@ void	draw(void)
 						break ;
 					i++;
 				}
-				// pthread_mutex_lock(&e->m);
+				pthread_mutex_lock(&e->m);
 				put_pixel_to_img(x, y, 0x110000 * ((double)i/10), e);
-				// pthread_mutex_unlock(&e->m);
+				pthread_mutex_unlock(&e->m);
 				y++;
 			}
 			x++;

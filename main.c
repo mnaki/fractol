@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:12:21 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:24:21 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	new_env(ssize_t width, ssize_t height, char *title, t_env *e)
 	e->core = mlx_init();
 	e->win = mlx_new_window(e->core, width, height, title);
 	e->img = mlx_new_image(e->core, WIDTH, HEIGHT);
+	e->finish = mlx_new_image(e->core, WIDTH, HEIGHT);
 	init_callbacks(e->callback);
 }
 
@@ -45,6 +46,7 @@ t_env	*global_singleton(void)
 		e.max_iter = 0;
 		e.width = WIDTH;
 		e.height = HEIGHT;
+		pthread_mutex_init(&e.m, NULL);
 		inited = true;
 	}
 	return (&e);
@@ -56,8 +58,5 @@ int		main(void)
 	global_singleton();
 	pthread_create(&t, NULL, (void*)draw, NULL);
 	mlx_loop(global_singleton()->core);
-
-
-
 	return (0);
 }

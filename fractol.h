@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 19:09:53 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/15 19:24:05 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct					s_env
 	void				*core;
 	void				*win;
 	void				*img;
+	void				*finish;
 	int					width;
 	int					height;
 	int					(*callback[MAX_CALLBACKS])(int k, t_env *e);
