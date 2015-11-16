@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 23:42:46 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 13:25:48 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,19 @@ struct					s_env
 	int					width;
 	int					height;
 	int					(*callback[MAX_CALLBACKS])(int k, t_env *e);
+	int					(*mouse_callback[MAX_CALLBACKS])(int button,
+						int x, int y, t_env *e);
 	double				c_re;
 	double				c_im;
 	double				zoom;
 	double				move_x;
 	double				move_y;
 	int					max_iter;
+	pthread_t			t;
 	pthread_mutex_t		m;
+	t_bool				run;
+	int					mouse_x;
+	int					mouse_y;
 };
 
 struct					s_vec2
@@ -51,13 +57,15 @@ t_env					*global_singleton(void);
 
 void					init_callbacks(int (*callback[])());
 void					new_env(ssize_t w, ssize_t h, char *title, t_env *e);
-void					init_singleton(t_env *e);
+void					init_hooks(t_env *e);
 
 void					put_pixel_to_img(int x, int y, t_uint color, t_env *e);
 
 int						loop_hook(t_env *e);
 int						key_hook(int k, t_env *e);
 int						expose_hook(t_env *e);
+int						mouse_hook(int button, int x, int y, t_env *e);
+
 void					draw(void);
 
 void					fill_img(unsigned int color, t_env *e);
@@ -73,5 +81,11 @@ int						ft_move_up(void);
 int						ft_move_down(void);
 int						ft_move_left(void);
 int						ft_move_right(void);
+
+void					ft_swap(void *a, void *b);
+
+void					init_mouse_callbacks(int (*mouse_callback[])());
+int						left_mouse(int button, int x, int y, t_env *e);
+int						right_mouse(int button, int x, int y, t_env *e);
 
 #endif

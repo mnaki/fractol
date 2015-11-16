@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 00:15:06 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 13:11:44 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ void	new_env(ssize_t width, ssize_t height, char *title, t_env *e)
 	e->img = mlx_new_image(e->core, width, height);
 	e->finish = mlx_new_image(e->core, width, height);
 	init_callbacks(e->callback);
+	init_mouse_callbacks(e->mouse_callback);
 }
 
-void	init_singleton(t_env *e)
+void	init_hooks(t_env *e)
 {
 	mlx_key_hook(e->win, &key_hook, e);
 	mlx_loop_hook(e->core, &loop_hook, e);
 	mlx_expose_hook(e->win, &expose_hook, e);
+	mlx_mouse_hook(e->win, &mouse_hook, e);
 }
 
 t_env	*global_singleton(void)
@@ -44,9 +46,10 @@ t_env	*global_singleton(void)
 		e.max_iter = 0;
 		e.width = 800;
 		e.height = 600;
+		e.run = true;
 		new_env(e.width, e.height, "Fract'Ol", &e);
 		pthread_mutex_init(&e.m, NULL);
-		init_singleton(&e);
+		init_hooks(&e);
 		inited = true;
 	}
 	return (&e);
@@ -54,9 +57,8 @@ t_env	*global_singleton(void)
 
 int		main(void)
 {
-	static	pthread_t t;
 	global_singleton();
-	pthread_create(&t, NULL, (void*)draw, NULL);
+	pthread_create(&global_singleton()->t, NULL, (void*)draw, NULL);
 	mlx_loop(global_singleton()->core);
 	return (0);
 }

@@ -6,25 +6,24 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 01:02:12 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 13:54:40 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void ft_swap(void *a, void *b);
 void	ft_swap(void *a, void *b)
 {
 	void	*c;
 
-	c = (void**)a;
+	c = *(void**)a;
 	*(void**)a = *(void**)b;
 	*(void**)b = c;
 }
 
 int		loop_hook(t_env *e)
 {
-	usleep(1000);
+	// usleep(1000 / 25);
 	pthread_mutex_lock(&e->m);
 	mlx_put_image_to_window(e->core, e->win, e->finish, 0, 0);
 	pthread_mutex_unlock(&e->m);
@@ -37,6 +36,15 @@ int		key_hook(int k, t_env *e)
 	if (k >= MAX_CALLBACKS || e->callback[k] == NULL)
 		return (0);
 	return (e->callback[k](k, e));
+}
+
+int		mouse_hook(int button, int x, int y, t_env *e)
+{
+	e->mouse_x = x;
+	e->mouse_y = y;
+	if (button >= MAX_CALLBACKS || e->mouse_callback[button] == NULL)
+		return (0);
+	return (e->mouse_callback[button](button, x, y, e));
 }
 
 int		expose_hook(t_env *e)
@@ -60,7 +68,12 @@ void	draw(void)
 	e = global_singleton();
 	while (1)
 	{
+
+		pthread_mutex_lock(&e->m);
+		if (!e->run)
+			pthread_exit(0);
 		fill_img(0xffffff, e);
+		pthread_mutex_unlock(&e->m);
 		x = 0;
 		while (x < e->width)
 		{
@@ -80,18 +93,16 @@ void	draw(void)
 						break ;
 					i++;
 				}
-				// pthread_mutex_lock(&e->m);
-				put_pixel_to_img(x, y, ((i * 0x010101) % (0xffffff)), e);
-				// pthread_mutex_unlock(&e->m);
+				pthread_mutex_lock(&e->m);
+				put_pixel_to_img(x, y, (0xff9999 * i) % 0xffffff, e);
+				pthread_mutex_unlock(&e->m);
 				y++;
 			}
 			x++;
 		}
-		e->max_iter = (e->max_iter + 10) % 500;
+		e->max_iter = (e->max_iter + 1) % 100;
 		pthread_mutex_lock(&e->m);
-		void *tmp = e->img;
-		e->img = e->finish;
-		e->finish = tmp;
+		ft_swap(&e->img, &e->finish);
 		pthread_mutex_unlock(&e->m);
 	}
 }
