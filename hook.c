@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 00:41:10 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 01:02:12 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_swap(void *a, void *b)
 
 int		loop_hook(t_env *e)
 {
+	usleep(1000);
 	pthread_mutex_lock(&e->m);
-	usleep(10000);
 	mlx_put_image_to_window(e->core, e->win, e->finish, 0, 0);
 	pthread_mutex_unlock(&e->m);
 	return (1);
@@ -60,7 +60,7 @@ void	draw(void)
 	e = global_singleton();
 	while (1)
 	{
-		// fill_img(0x110000 * e->max_iter % 0xff0000, e);
+		fill_img(0xffffff, e);
 		x = 0;
 		while (x < e->width)
 		{
@@ -81,13 +81,13 @@ void	draw(void)
 					i++;
 				}
 				// pthread_mutex_lock(&e->m);
-				put_pixel_to_img(x, y, 0xff0000 * i % 0xff0000, e);
+				put_pixel_to_img(x, y, ((i * 0x010101) % (0xffffff)), e);
 				// pthread_mutex_unlock(&e->m);
 				y++;
 			}
 			x++;
 		}
-		e->max_iter = 10 + (e->max_iter + 2) % 100;
+		e->max_iter = (e->max_iter + 10) % 500;
 		pthread_mutex_lock(&e->m);
 		void *tmp = e->img;
 		e->img = e->finish;
