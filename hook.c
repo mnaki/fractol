@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 13:54:40 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 13:59:20 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_swap(void *a, void *b)
 
 int		loop_hook(t_env *e)
 {
-	// usleep(1000 / 25);
 	pthread_mutex_lock(&e->m);
 	mlx_put_image_to_window(e->core, e->win, e->finish, 0, 0);
 	pthread_mutex_unlock(&e->m);
@@ -40,8 +39,7 @@ int		key_hook(int k, t_env *e)
 
 int		mouse_hook(int button, int x, int y, t_env *e)
 {
-	e->mouse_x = x;
-	e->mouse_y = y;
+	ft_printf("mouse -> %d\n", button);
 	if (button >= MAX_CALLBACKS || e->mouse_callback[button] == NULL)
 		return (0);
 	return (e->mouse_callback[button](button, x, y, e));

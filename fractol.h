@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 13:25:48 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 14:01:18 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ struct					s_env
 	pthread_t			t;
 	pthread_mutex_t		m;
 	t_bool				run;
-	int					mouse_x;
-	int					mouse_y;
 };
 
 struct					s_vec2
@@ -87,5 +85,7 @@ void					ft_swap(void *a, void *b);
 void					init_mouse_callbacks(int (*mouse_callback[])());
 int						left_mouse(int button, int x, int y, t_env *e);
 int						right_mouse(int button, int x, int y, t_env *e);
+int						mouse_zoom(int button, int x, int y, t_env *e);
+int						mouse_unzoom(int button, int x, int y, t_env *e);
 
 #endif
