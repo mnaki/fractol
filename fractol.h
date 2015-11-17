@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 14:01:18 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 14:41:01 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ struct					s_vec2
 	double				dy;
 };
 
+typedef struct			s_julia
+{
+	double	new_re;
+	double	new_im;
+	double	old_im;
+	double	old_re;
+}						t_julia;
+
 t_env					*global_singleton(void);
 
 void					init_callbacks(int (*callback[])());
@@ -87,5 +95,15 @@ int						left_mouse(int button, int x, int y, t_env *e);
 int						right_mouse(int button, int x, int y, t_env *e);
 int						mouse_zoom(int button, int x, int y, t_env *e);
 int						mouse_unzoom(int button, int x, int y, t_env *e);
+
+void					swap_buffer(void);
+void					clear_buffer(void);
+
+void					julia(t_julia *j, int *x, int *y, int *i);
+void					julia2(t_julia *j, int *x, int *y);
+void					julia3(t_julia *j);
+void					plot(int *x, int *y, int *i);
+void					julia_wild(t_julia *j, int *x, int *y, int *i);
+void					julia_while(t_julia *j, int *i);
 
 #endif

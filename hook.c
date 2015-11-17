@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 13:59:20 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 14:41:40 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,51 +56,45 @@ void	draw(void)
 {
 	int		x;
 	int		y;
-	double	new_re;
-	double	new_im;
-	double	old_im;
-	double	old_re;
-	int i;
+	t_julia	j;
+	int		i;
+
+	while (1)
+	{
+		clear_buffer();
+		julia(&j, &x, &y, &i);
+		swap_buffer();
+	}
+}
+
+void	plot(int *x, int *y, int *i)
+{
 	t_env	*e;
 
 	e = global_singleton();
-	while (1)
-	{
+	pthread_mutex_lock(&e->m);
+	put_pixel_to_img(*x, *y, 0x110000 * (*i) % 0xffffff, e);
+	pthread_mutex_unlock(&e->m);
+}
 
-		pthread_mutex_lock(&e->m);
-		if (!e->run)
-			pthread_exit(0);
-		fill_img(0xffffff, e);
-		pthread_mutex_unlock(&e->m);
-		x = 0;
-		while (x < e->width)
-		{
-			y = 0;
-			while (y < e->height)
-			{
-				new_re = 1.5 * (x - e->width / 2) / (0.5 * e->zoom * e->width) + e->move_x;
-				new_im = (y - e->height / 2) / (0.5 * e->zoom * e->height) + e->move_y;
-				i = 0;
-				while (i < e->max_iter)
-				{
-					old_re = new_re;
-					old_im = new_im;
-					new_re = old_re * old_re - old_im * old_im + e->c_re;
-					new_im = 2 * old_re * old_im + e->c_im;
-					if ((new_re * new_re + new_im * new_im) > 4)
-						break ;
-					i++;
-				}
-				pthread_mutex_lock(&e->m);
-				put_pixel_to_img(x, y, (0xff9999 * i) % 0xffffff, e);
-				pthread_mutex_unlock(&e->m);
-				y++;
-			}
-			x++;
-		}
-		e->max_iter = (e->max_iter + 1) % 100;
-		pthread_mutex_lock(&e->m);
-		ft_swap(&e->img, &e->finish);
-		pthread_mutex_unlock(&e->m);
-	}
+void	swap_buffer(void)
+{
+	t_env	*e;
+
+	e = global_singleton();
+	pthread_mutex_lock(&e->m);
+	ft_swap(&e->img, &e->finish);
+	pthread_mutex_unlock(&e->m);
+}
+
+void	clear_buffer(void)
+{
+	t_env	*e;
+
+	e = global_singleton();
+	pthread_mutex_lock(&e->m);
+	if (!e->run)
+		pthread_exit(0);
+	fill_img(0xffffff, e);
+	pthread_mutex_unlock(&e->m);
 }

@@ -6,13 +6,13 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 14:23:44 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 14:41:40 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/16 14:50:46 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(t_julia *j, int *x, int *y, int *i)
+void		julia(t_julia *j, int *x, int *y, int *i)
 {
 	t_env	*e;
 
@@ -20,12 +20,12 @@ void	julia(t_julia *j, int *x, int *y, int *i)
 	*x = 0;
 	while (*x < e->width)
 	{
-		y = 0;
+		(*y) = 0;
 		julia_wild(j, x, y, i);
-		x++;
+		(*x)++;
 	}
-	e->c_re += 0.01 / (e->zoom / 2);
-	e->c_im += 0.01 / (e->zoom / 2);
+	e->c_re += 0.002 / (e->zoom / 2);
+	e->c_im += 0.001 / (e->zoom / 2);
 	e->max_iter = (e->max_iter + 1) % 150;
 }
 
@@ -44,7 +44,7 @@ void		julia_wild(t_julia *j, int *x, int *y, int *i)
 	}
 }
 
-void	julia_while(t_julia *j, int *i)
+void		julia_while(t_julia *j, int *i)
 {
 	t_env	*e;
 
@@ -58,7 +58,7 @@ void	julia_while(t_julia *j, int *i)
 	}
 }
 
-void	julia2(t_julia *j, int *x, int *y)
+void		julia2(t_julia *j, int *x, int *y)
 {
 	t_env	*e;
 
@@ -69,7 +69,7 @@ void	julia2(t_julia *j, int *x, int *y)
 	+ e->move_y;
 }
 
-void	julia3(t_julia *j)
+void		julia3(t_julia *j)
 {
 	t_env	*e;
 
