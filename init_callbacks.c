@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 15:16:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 14:03:15 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 14:36:51 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ int		ft_zoom_plus(void)
 	return (1);
 }
 
+int		ft_increment_fractal(void)
+{
+	global_singleton()->wanted_value += 0.1;
+	return (1);
+}
+
+int		ft_decrement_fractal(void)
+{
+	global_singleton()->wanted_value -= 0.1;
+	return (1);
+}
+
 void	init_callbacks(int (*callback[])())
 {
 	callback[53] = ft_exit;
@@ -36,6 +48,8 @@ void	init_callbacks(int (*callback[])())
 	callback[125] = ft_move_down;
 	callback[123] = ft_move_left;
 	callback[124] = ft_move_right;
+	callback[78] = ft_decrement_fractal;
+	callback[69] = ft_increment_fractal;
 }
 
 void	init_mouse_callbacks(int (*mouse_callback[])())

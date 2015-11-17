@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 14:41:01 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 14:26:48 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ struct					s_env
 	pthread_t			t;
 	pthread_mutex_t		m;
 	t_bool				run;
+	double				wanted_value;
 };
 
 struct					s_vec2
@@ -105,5 +106,9 @@ void					julia3(t_julia *j);
 void					plot(int *x, int *y, int *i);
 void					julia_wild(t_julia *j, int *x, int *y, int *i);
 void					julia_while(t_julia *j, int *i);
+
+int						ft_increment_fractal(void);
+int						ft_decrement_fractal(void);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/16 14:41:40 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 14:12:58 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	plot(int *x, int *y, int *i)
 
 	e = global_singleton();
 	pthread_mutex_lock(&e->m);
-	put_pixel_to_img(*x, *y, 0x110000 * (*i) % 0xffffff, e);
+	// put_pixel_to_img(*x, *y, 0x110000 * (*i) % 0xffffff, e);
+	put_pixel_to_img(*x, *y, ((*i * 0x101010) % (0xffffff)), e);
 	pthread_mutex_unlock(&e->m);
 }
 
