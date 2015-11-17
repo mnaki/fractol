@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 14:26:48 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 15:21:30 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ struct					s_env
 	double				zoom;
 	double				move_x;
 	double				move_y;
-	int					max_iter;
+	double				max_iter;
+	double				wanted_iter;
 	pthread_t			t;
 	pthread_mutex_t		m;
 	t_bool				run;

@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 14:25:07 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 15:32:48 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ t_env	*global_singleton(void)
 		e.move_x = 0;
 		e.move_y = 0;
 		e.max_iter = 0;
-		e.width = 300;
-		e.height = 200;
+		e.width = 400;
+		e.height = 300;
 		e.run = true;
-		e.wanted_value = 0;
+		e.wanted_value = -1.25;
+		e.wanted_iter = 30;
 		new_env(e.width, e.height, "Fract'Ol", &e);
 		pthread_mutex_init(&e.m, NULL);
 		init_hooks(&e);

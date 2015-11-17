@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 14:12:58 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/17 15:31:55 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	draw(void)
 		clear_buffer();
 		julia(&j, &x, &y, &i);
 		swap_buffer();
+		usleep(1000000 / 25);
 	}
 }
 
@@ -73,8 +74,8 @@ void	plot(int *x, int *y, int *i)
 
 	e = global_singleton();
 	pthread_mutex_lock(&e->m);
-	// put_pixel_to_img(*x, *y, 0x110000 * (*i) % 0xffffff, e);
-	put_pixel_to_img(*x, *y, ((*i * 0x101010) % (0xffffff)), e);
+	if (*i > 2)
+		put_pixel_to_img(*x, *y, ((*i * 0x191919) * 0x009900), e);
 	pthread_mutex_unlock(&e->m);
 }
 
@@ -96,6 +97,6 @@ void	clear_buffer(void)
 	pthread_mutex_lock(&e->m);
 	if (!e->run)
 		pthread_exit(0);
-	fill_img(0xffffff, e);
+	fill_img(((2 * 0x191919) * 0x009900), e);
 	pthread_mutex_unlock(&e->m);
 }
