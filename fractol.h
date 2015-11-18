@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 15:21:30 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 14:01:15 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ struct					s_env
 	pthread_t			t;
 	pthread_mutex_t		m;
 	t_bool				run;
-	double				wanted_value;
+	double				wanted_re;
+	double				wanted_im;
+	double				final_x;
+	double				final_zoom;
+	double				final_y;
+	int					set;
 };
 
 struct					s_vec2
@@ -111,5 +116,13 @@ void					julia_while(t_julia *j, int *i);
 int						ft_increment_fractal(void);
 int						ft_decrement_fractal(void);
 
+int						set1(void);
+int						set2(void);
+int						set3(void);
+int						set4(void);
+
+void					mandelbrot(int *x, int *y, int *i);
+void					mandel_plot(int x, int y, int color);
+void					mandel_while(float *x, float *y, int *i_i);
 
 #endif

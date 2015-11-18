@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 15:32:48 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 13:52:17 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,18 @@ t_env	*global_singleton(void)
 
 	if (!inited)
 	{
+		inited = true;
 		ft_bzero(&e, sizeof(e));
-		e.c_re = 0;
-		e.c_im = 0;
 		e.zoom = 1;
-		e.move_x = 0;
-		e.move_y = 0;
-		e.max_iter = 0;
 		e.width = 400;
 		e.height = 300;
 		e.run = true;
-		e.wanted_value = -1.25;
-		e.wanted_iter = 30;
+		e.wanted_iter = 10;
+		e.set = 1;
+		set1();
 		new_env(e.width, e.height, "Fract'Ol", &e);
 		pthread_mutex_init(&e.m, NULL);
 		init_hooks(&e);
-		inited = true;
 	}
 	return (&e);
 }

@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 14:23:44 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 15:26:07 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 13:56:18 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ void		julia(t_julia *j, int *x, int *y, int *i)
 		julia_wild(j, x, y, i);
 		(*x)++;
 	}
-	e->c_re += ((e->wanted_value - e->c_re) / 4);
-	// e->c_im += ((e->wanted_value - e->c_im) / 4);
-	e->max_iter += ((e->wanted_iter - e->max_iter) / 4);
-	// e->max_iter += 1;
 }
 
 void		julia_wild(t_julia *j, int *x, int *y, int *i)
@@ -64,10 +60,10 @@ void		julia2(t_julia *j, int *x, int *y)
 	t_env	*e;
 
 	e = global_singleton();
-	j->new_re = 1.5 * (*x - e->width / 2) / (0.5 * e->zoom * e->width)
-	+ e->move_x;
-	j->new_im = (*y - e->height / 2) / (0.5 * e->zoom * e->height)
-	+ e->move_y;
+	j->new_re = 1.5 * (*x - e->width / 2) / (0.5 * e->final_zoom * e->width)
+	+ e->final_x;
+	j->new_im = (*y - e->height / 2) / (0.5 * e->final_zoom * e->height)
+	+ e->final_y;
 }
 
 void		julia3(t_julia *j)

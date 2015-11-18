@@ -6,37 +6,11 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 15:16:01 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/17 14:36:51 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 13:51:39 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int		ft_zoom_minus(void)
-{
-	ft_printf("%s\n", "unzoom");
-	global_singleton()->zoom *= 0.5;
-	return (1);
-}
-
-int		ft_zoom_plus(void)
-{
-	ft_printf("%s\n", "zoom");
-	global_singleton()->zoom *= 1.5;
-	return (1);
-}
-
-int		ft_increment_fractal(void)
-{
-	global_singleton()->wanted_value += 0.1;
-	return (1);
-}
-
-int		ft_decrement_fractal(void)
-{
-	global_singleton()->wanted_value -= 0.1;
-	return (1);
-}
 
 void	init_callbacks(int (*callback[])())
 {
@@ -50,6 +24,10 @@ void	init_callbacks(int (*callback[])())
 	callback[124] = ft_move_right;
 	callback[78] = ft_decrement_fractal;
 	callback[69] = ft_increment_fractal;
+	callback[18] = set1;
+	callback[19] = set2;
+	callback[20] = set3;
+	callback[21] = set4;
 }
 
 void	init_mouse_callbacks(int (*mouse_callback[])())

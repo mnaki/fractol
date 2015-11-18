@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   init_callbacks3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/15 16:46:29 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/15 17:42:33 by nmohamed         ###   ########.fr       */
+/*   Created: 2015/11/18 13:51:26 by nmohamed          #+#    #+#             */
+/*   Updated: 2015/11/18 13:51:34 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include "fractol.h"
 
-typedef struct	s_vec
+int		ft_zoom_minus(void)
 {
-	float		x;
-	float		y;
-}				t_vec;
+	ft_printf("%s\n", "unzoom");
+	global_singleton()->zoom *= 0.5;
+	return (1);
+}
 
-t_vec vec_mul(t_vec vec, float n);
-t_vec vec_div(t_vec vec, float n);
-t_vec vec_add(t_vec vec1, t_vec vec2);
-t_vec vec_sub(t_vec vec1, t_vec vec2);
-t_vec vec_rot(t_vec vec, float n);
+int		ft_zoom_plus(void)
+{
+	ft_printf("%s\n", "zoom");
+	global_singleton()->zoom *= 1.5;
+	return (1);
+}
 
-float radians(float n);
-float degrees(float n);
+int		ft_increment_fractal(void)
+{
+	global_singleton()->wanted_iter += 10;
+	return (1);
+}
 
-#endif
+int		ft_decrement_fractal(void)
+{
+	global_singleton()->wanted_iter -= 10;
+	return (1);
+}
