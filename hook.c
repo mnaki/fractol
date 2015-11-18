@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/18 14:07:31 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 15:28:16 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,20 @@ int		expose_hook(t_env *e)
 {
 	mlx_clear_window(e->core, e->win);
 	mlx_put_image_to_window(e->core, e->win, e->img, 0, 0);
+	return (1);
+}
+
+int mouse_move(int x, int y, t_env *e)
+{
+	static double	prev_x = 0;
+	static double	prev_y = 0;
+
+	e->wanted_im += (x - prev_x) / 10000;
+	e->wanted_re += (y - prev_y) / 10000;
+	e->move_x += (x - prev_x) / (e->final_zoom * 1000);
+	e->move_y += (y - prev_y) / (e->final_zoom * 1000);
+	prev_x = x;
+	prev_y = y;
+	ft_printf("x->\t%d\t\ty->\t%d", x, y);
 	return (1);
 }
