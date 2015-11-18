@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/17 15:52:50 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/18 14:01:23 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 14:59:07 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		mandelbrot(int *i_x, int *i_y, int *i_i)
 			(*i_i) = 0;
 			while (x * x + y * y <= 4 && (*i_i) < e->max_iter)
 				mandel_while(&x, &y, i_i);
-			mandel_plot((*i_x), (*i_y), (int)((*i_i) * 0x191919) * 0x009900);
+			plot((i_x), (i_y), (i_i));
 			(*i_y)++;
 		}
 		(*i_x)++;

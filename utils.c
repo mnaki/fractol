@@ -6,11 +6,13 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/18 14:07:46 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/18 14:08:12 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/18 15:05:38 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int		g_color = 0xf3f5ff;
 
 void	ft_swap(void *a, void *b)
 {
@@ -54,8 +56,7 @@ void	plot(int *x, int *y, int *i)
 
 	e = global_singleton();
 	pthread_mutex_lock(&e->m);
-	if (*i > 2)
-		put_pixel_to_img(*x, *y, ((*i * 0x191919) * 0x009900), e);
+	put_pixel_to_img(*x, *y, *i * g_color | 0xaaaaaa, e);
 	pthread_mutex_unlock(&e->m);
 }
 
