@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 15:32:17 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/21 17:50:40 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_env	*global_singleton(void)
 		inited = true;
 		ft_bzero(&e, sizeof(e));
 		e.zoom = 1;
-		e.width = 300;
-		e.height = 200;
+		e.width = 600;
+		e.height = 400;
 		e.run = true;
 		e.wanted_iter = 10;
 		e.set = 1;
