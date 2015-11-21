@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 16:22:51 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/21 16:23:17 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int		loop_hook(t_env *e)
 {
 	pthread_mutex_lock(&e->m);
-	if (e->win == NULL)
-		ft_exit(0, e);
 	mlx_put_image_to_window(e->core, e->win, e->finish, 0, 0);
 	pthread_mutex_unlock(&e->m);
 	return (1);
