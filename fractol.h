@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/18 15:24:29 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/21 16:36:50 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,7 @@ void					mandel_plot(int x, int y, int color);
 void					mandel_while(float *x, float *y, int *i_i);
 
 int						mouse_move(int x, int y, t_env *e);
+
+void					newton(int *x, int*y, int *i);
 
 #endif
