@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/16 09:38:00 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 17:55:58 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/21 21:06:21 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int mouse_move(int x, int y, t_env *e)
 	static double	prev_x = 0;
 	static double	prev_y = 0;
 
-	e->wanted_im += (x - prev_x) / 10000;
-	e->wanted_re += (y - prev_y) / 10000;
+	e->wanted_im += (x - prev_x) / 7500;
+	e->wanted_re += (y - prev_y) / 7500;
 	e->move_x += (x - prev_x) / (e->final_zoom * 1000);
 	e->move_y += (y - prev_y) / (e->final_zoom * 1000);
 	prev_x = x;
