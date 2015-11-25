@@ -6,11 +6,11 @@
 #    By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/05 14:47:20 by nmohamed          #+#    #+#              #
-#    Updated: 2015/11/21 16:47:55 by nmohamed         ###   ########.fr        #
+#    Updated: 2015/11/22 16:13:47 by nmohamed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		:=	callbacks.c draw_seg.c fill_img.c hook.c init_callbacks.c init_callbacks2.c init_callbacks3.c julia.c main.c mandelbrot.c mouse_callback.c put_pixel_to_img.c sets.c utils.c newton.c
+SRC		:=	callbacks.c draw_seg.c fill_img.c hook.c init_callbacks.c init_callbacks2.c init_callbacks3.c julia.c main.c mandelbrot.c mouse_callback.c put_pixel_to_img.c sets.c utils.c fracfrac.c
 
 CC		:=	gcc
 NAME	:=	fractol

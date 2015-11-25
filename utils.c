@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/18 14:07:46 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 21:08:40 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/22 17:40:46 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw(void)
 		else if (e->set == 3)
 			mandelbrot(&x, &y, &i);
 		else if (e->set == 4)
-			newton(&x, &y, &i);
+			fracfrac(&j, &x, &y, &i);
 		swap_buffer();
 	}
 }
@@ -79,6 +79,5 @@ void	clear_buffer(void)
 	pthread_mutex_lock(&e->m);
 	if (!e->run)
 		pthread_exit(0);
-	// fill_img(((2 * 0x191919) * 0x009900), e);
 	pthread_mutex_unlock(&e->m);
 }

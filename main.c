@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 12:36:15 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 17:50:40 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/22 16:14:57 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	new_env(ssize_t width, ssize_t height, char *title, t_env *e)
 
 void	init_hooks(t_env *e)
 {
-	// mlx_key_hook(e->win, &key_hook, e);
 	mlx_hook(e->win, 2, (1L << 7), &key_hook, e);
 	mlx_loop_hook(e->core, &loop_hook, e);
 	mlx_expose_hook(e->win, &expose_hook, e);

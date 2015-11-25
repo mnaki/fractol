@@ -6,7 +6,7 @@
 /*   By: nmohamed <nmohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/04/15 15:15:51 by nmohamed          #+#    #+#             */
-/*   Updated: 2015/11/21 16:36:50 by nmohamed         ###   ########.fr       */
+/*   Updated: 2015/11/22 16:13:15 by nmohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,11 @@ void					mandel_while(float *x, float *y, int *i_i);
 int						mouse_move(int x, int y, t_env *e);
 
 void					newton(int *x, int*y, int *i);
+
+void					fracfrac(t_julia *j, int *x, int *y, int *i);
+void					fracfrac_wild(t_julia *j, int *x, int *y, int *i);
+void					fracfrac_while(t_julia *j, int *i);
+void					fracfrac2(t_julia *j, int *x, int *y);
+void					fracfrac3(t_julia *j);
 
 #endif
