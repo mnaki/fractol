@@ -55,6 +55,5 @@ int		mouse_move(int x, int y, t_env *e)
 	e->move_y += (y - prev_y) / (e->final_zoom * 1000);
 	prev_x = x;
 	prev_y = y;
-	ft_printf("x->\t%d\t\ty->\t%d", x, y);
 	return (1);
 }

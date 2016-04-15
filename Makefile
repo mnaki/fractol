@@ -14,13 +14,13 @@ SRC		:=	callbacks.c draw_seg.c fill_img.c hook.c init_callbacks.c init_callbacks
 
 CC		:=	gcc
 NAME	:=	fractol
-INC		:=	-I/home/nmohamed/minilibx/ -I./ -I./libft -I$(HOME)/minilibx_macos
+INC		:=	-I/home/nmohamed/minilibx/ -I./ -I./libft -I./minilibx
 OBJ		:=	$(SRC:.c=.o)
-CFLAGS	:=	-Wall -Wextra -Werror -Wmissing-prototypes -g
-LDFLAGS	:=	-L./libft -lft -L$(HOME)/minilibx_macos -L$(HOME)/minilibx/ -lmlx -lpthread
+CFLAGS	:=	-Wall
+LDFLAGS	:=	-L./libft -lft -L./minilibx -L$(HOME)/minilibx/ -lpthread -lmlx_intel-mac
 
 ifeq ($(shell uname), Darwin)
-LDFLAGS += -framework OpenGL -framework AppKit
+LDFLAGS += -L/usr/X11/lib -framework OpenGL -framework AppKit -lX11 -lXext
 else
 LDFLAGS += -lX11 -lXext
 endif
@@ -28,7 +28,7 @@ endif
 all		:	libft $(NAME)
 
 $(NAME)	:	$(OBJ)
-			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)  $(LDFLAGS) -lm
+			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS) -lm 
 
 libft	:
 			@make -j -C libft
