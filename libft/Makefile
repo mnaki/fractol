@@ -92,7 +92,7 @@ CC		:=	clang
 NAME	:=	libft.a
 INC		:=	./
 OBJ		:=	$(SRC:.c=.o)
-CFLAGS	:=	-Wall -Wextra -Werror
+CFLAGS	:=	-Wall -Wextra -Werror -fPIC
 DFLAGS	:=	-g -D DEBUG=1
 ARFLAGS	:=	-rcs
 AR		:=	ar

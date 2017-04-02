@@ -17,7 +17,7 @@ NAME	:=	fractol
 INC		:=	-I/home/nmohamed/minilibx/ -I./ -I./libft -I./minilibx
 OBJ		:=	$(SRC:.c=.o)
 CFLAGS	:=	-Wall
-LDFLAGS	:=	-L./libft -lft -L./minilibx -L$(HOME)/minilibx/ -lpthread -lmlx_intel-mac
+LDFLAGS	:=	-L./libft -lft -L./minilibx -L$(HOME)/minilibx/ -lpthread -lmlx_Linux
 
 ifeq ($(shell uname), Darwin)
 LDFLAGS += -L/usr/X11/lib -framework OpenGL -framework AppKit -lX11 -lXext
