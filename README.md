@@ -5,4 +5,6 @@
 ```
 git checkout linux
 
+```
+
 ![Demo GIF](https://raw.githubusercontent.com/mnaki/fractol/master/demo.gif)
